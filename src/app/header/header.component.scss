@@ -1,0 +1,49 @@
+.header {
+  display: flex;
+  height: 9.375vh;
+  padding: 0;
+  justify-content: space-between;
+  .logo-area {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1.9444vw;
+    img {
+      width: 22.2222vw;
+      height: 3.125vh;
+    }
+  }
+
+  .content-name-area {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5625vh;
+    font-weight: bold;
+    p {
+      font-size: 16px;
+    }
+  }
+  .function-area {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin-right: 1.9444vw;
+      padding-inline: 0;
+      padding-block: 0;
+      img {
+        height: 4.6875vh; // icon 크기 : 30px * 30px
+        width: 8.3333vw;
+      }
+    }
+  }
+}

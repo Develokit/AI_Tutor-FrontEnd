@@ -1,0 +1,26 @@
+<div class="header">
+  <div class="logo-area">
+    <img src="assets/icons/logo.png" alt="Logo" />
+  </div>
+
+  <div class="content-name-area">
+    <!-- router를 이용하여 컴포넌트 변경에 따른 이름 변경을 위한 함수 설정-->
+    <p>{{ contentName }}</p>
+  </div>
+
+  <!-- 헤더 부분에서 아이콘 클릭 영역 -->
+  <div class="function-area">
+    <!-- 검색 아이콘 -->
+    <button (click)="(onClick)">
+      <img src="assets/icons/Search_light.png" alt="Button 1" />
+    </button>
+    <!-- 마이페이지 아이콘 -->
+    <button (click)="(onClick)">
+      <img src="assets/icons/User_alt_light.png" alt="Button 1" />
+    </button>
+    <!-- 메뉴 아이콘 -->
+    <button (click)="(onClick)">
+      <img src="assets/icons/darhboard.png" alt="Button 1" />
+    </button>
+  </div>
+</div>
