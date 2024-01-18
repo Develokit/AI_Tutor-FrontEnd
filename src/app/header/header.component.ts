@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [],
+  imports: [MatButtonModule, MatMenuModule, MatIconModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
@@ -12,6 +15,12 @@ export class HeaderComponent {
   onClick() {
     console.log('clicked');
   }
-  // contentName은 다른 컴포넌트 연결될 때 해당 내용 input 받아와서 변경되게끔 구현하기
-  contentName = 'AI_Tutor';
+
+  constructor(private router: Router) {}
+
+  // this.router.navigate([path]); 코드 추가 시 탭 제대로 작동하지 않음
+  // 아직 해결 방법 찾지 못함
+  navigateTo(path: string) {
+    this.router.navigate([path]);
+  }
 }
