@@ -16,15 +16,19 @@
       class="bg-blue-500 rounded-full w-10 h-10 flex items-center justify-center"
     >
       <!-- 이곳에 아이콘 SVG 또는 이미지 태그를 넣으세요 -->
+      <!-- tailwind로 원형틀 안에 사진 맞춰서 출력되게끔 할 것 -->
+      <img [src]="this.imgFile" />
     </div>
   </div>
 
   <!-- 텍스트 -->
   <div class="max-w-[266px]">
     <!-- 최대 너비 설정 -->
-    <p class="text-lg font-bold font-medium truncate">OO교수</p>
+    <p class="text-lg font-bold font-medium truncate">
+      {{ this.name }}
+    </p>
     <p class="text-base text-gray-500 truncate">
-      OO대학교 OO교수의 튜터입니다. 이 튜터는 지금 당장
+      {{ this.description }}
     </p>
   </div>
 </div>

@@ -10,21 +10,23 @@ import { NgIf } from '@angular/common';
   styleUrl: './chat-tutor-profile.component.scss',
   imports: [NgIf],
 })
-export class ChatTutorProfileComponent {}
-// export class ChatTutorProfileComponent implements OnInit {
-//   data: any;
+export class ChatTutorProfileComponent {
+  constructor(private chatprofileService: ChatTutorProfileService) {}
 
-//   constructor(private chatprofileService: ChatTutorProfileService) {}
+  name: string = '';
+  imgFile: string = '';
+  description: string = '';
 
-//   ngOnInit() {
-//     this.chatprofileService.loadData().subscribe((response) => {
-//       this.data = response;
-//     });
-//   }
-
-//   // loadData() {
-//   //   this.http.get('https://your-api-url.com/data').subscribe((response) => {
-//   //     this.data = response;
-//   //   });
-//   // }
-// }
+  ngOnInit() {
+    this.chatprofileService
+      .fetchProfile()
+      .then((response) => {
+        this.name = response.data.name; // response.data 객체에서 name 속성을 추출하여 컴포넌트의 name 변수에 할당
+        this.imgFile = response.data.imgFile;
+        this.description = response.data.description;
+      })
+      .catch((error) => {
+        console.error('에러 메시지 : ' + error);
+      });
+  }
+}
