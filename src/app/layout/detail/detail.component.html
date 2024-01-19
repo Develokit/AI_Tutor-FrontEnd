@@ -4,26 +4,17 @@
   <div
     class="w-24 h-24 mx-auto rounded-full border-2 border-dark-purple overflow-hidden"
   >
-    <!-- 튜터 프로필 사진 api로부터 받아와 출력하기 전 연결 test 코드
-      <img
-      *ngIf="imageUrl"
-      [src]="imageUrl"
-      class="w-full h-full object-cover rounded-full"
-    /> -->
+    <img [src]="this.img" class="w-[100px] h-[100px]" />
   </div>
   <h2 class="mt-2 font-bold text-[20px] max-w-[210px]">
-    튜터 이름 : OO튜터 이름이 긴 튜터는 어떻게 되는가?
+    {{ this.name }}
   </h2>
 </div>
 <div class="flex justify-center items-center">
   <div class="max-w-[314px] w-full md:w-auto">
     <p class="text-gray-600 font-extrabold text-lg">소개</p>
     <p class="text-sm text-gray-700 mt-1">
-      OO대학교 OO교수의 ‘컴퓨터개론’ 교재의 내용을 학습한 튜터입니다. 대충 한
-      서너줄 나오면 될 듯 싶네요. OO대학교 OO교수의 ‘컴퓨터개론’ 교재의 내용을
-      학습한 튜터입니다. 대충 한 서너줄 나오면 될 듯 싶네요. OO대학교 OO교수의
-      ‘컴퓨터개론’ 교재의 내용을 학습한 튜터입니다. 대충 한 서너줄 나오면 될 듯
-      싶네요
+      {{ this.description }}
     </p>
   </div>
 </div>
