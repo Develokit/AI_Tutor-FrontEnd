@@ -7,6 +7,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import axios from 'axios';
+import { ChatTutorComponent } from '../layout/chat-tutor/chat-tutor.component';
 
 @Injectable({ providedIn: 'root' })
 export class ChatService {
@@ -42,8 +43,8 @@ export class ChatService {
   >([]);
   currentMessages = this.messagesSource.asObservable();
 
-  addFile(file: File) {
-    this.selectedFile = file;
+  addFile(componentSelectedfile: File) {
+    this.selectedFile = componentSelectedfile;
   }
 
   async addMessage(message: { sender: string; text: string }) {
@@ -68,6 +69,8 @@ export class ChatService {
     try {
       let response;
       let newMessage;
+
+      console.log('sendfileprompt 실행 전 : ' + this.selectedFile?.name);
       if (this.selectedFile != null) {
         response = await this.sendFilePrompt(
           message.text,
@@ -75,8 +78,8 @@ export class ChatService {
           this.voicebool,
           this.selectedFile
         );
-        // 파일 들어가는지 확인하기 위한 임시 test console
-        console.log(this.selectedFile.name);
+        console.log('sendfileprompt 동기 실행 : ' + this.selectedFile.name);
+        this.selectedFile = null;
       } else {
         response = await this.sendPrompt(
           message.text,
@@ -96,6 +99,7 @@ export class ChatService {
     } catch (error) {
       console.error('에러:', error);
     }
+    console.log('addmessage 종료');
   }
 
   compareVoiceBool(isVoice: boolean) {
@@ -112,6 +116,21 @@ export class ChatService {
       },
     };
     return axios.post(apiUrl, config);
+  }
+
+  deleteThread() {
+    //api호출을 통한 쓰레드 삭제
+    const apiUrl = `${this.endpoint}threads/${this.threadId}`;
+    const config = {
+      headers: {
+        'content-type': 'application/json',
+        'ngrok-skip-browser-warning': '69420',
+      },
+    };
+    //프론트 측 쓰레드 아이디 삭제
+    this.threadId = '';
+    console.log('쓰레드 아이디 삭제 완료');
+    return axios.delete(apiUrl, config);
   }
 
   sendPrompt(content: string, assistantId: string, isVoice: boolean) {
@@ -147,6 +166,7 @@ export class ChatService {
     formData.append('assistantId', assistantId);
     formData.append('isVoice', this.voicebool.toString());
     formData.append('file', file, file.name);
+    console.log('sendfileprompt 실행 : ' + file.name);
     return axios.post(apiUrl, formData, config);
   }
 }
